@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="Theme.ControllerAgent" parent="Theme.Material3.DayNight.NoActionBar">
+        <item name="colorPrimary">#1E40AF</item>
+        <item name="colorPrimaryVariant">#1E3A8A</item>
+    </style>
+</resources>
