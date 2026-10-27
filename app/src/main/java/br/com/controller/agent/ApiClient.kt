@@ -88,4 +88,30 @@ object ApiClient {
     }
 
     fun comandosFrom(resp: JSONObject): JSONArray = resp.optJSONArray("comandos") ?: JSONArray()
+
+    /** Termo pendente vindo no report/poll (ou null). */
+    fun termoFrom(resp: JSONObject): JSONObject? = resp.optJSONObject("termo_pendente")
+
+    /** Envia a assinatura do termo (feita no app, sem login). */
+    fun assinarTermo(
+        enrollmentId: String,
+        secret: String,
+        termoId: String,
+        nome: String,
+        cpf: String,
+        assinatura: String,
+        texto: String
+    ): JSONObject {
+        return post(
+            JSONObject()
+                .put("action", "assinarTermo")
+                .put("enrollment_id", enrollmentId)
+                .put("device_secret", secret)
+                .put("termo_id", termoId)
+                .put("nome", nome)
+                .put("cpf", cpf)
+                .put("assinatura", assinatura)
+                .put("texto", texto)
+        )
+    }
 }

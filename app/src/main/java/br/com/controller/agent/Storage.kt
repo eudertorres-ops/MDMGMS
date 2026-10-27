@@ -38,6 +38,22 @@ class Storage(context: Context) {
         get() = prefs.getBoolean("rastreio_localizacao", true)
         set(v) = prefs.edit().putBoolean("rastreio_localizacao", v).apply()
 
+    // --- Termo pendente de assinatura (cobranca no app) ---
+    var termoPendenteId: String?
+        get() = prefs.getString("termo_pendente_id", null)
+        set(v) = prefs.edit().putString("termo_pendente_id", v).apply()
+
+    var termoTexto: String?
+        get() = prefs.getString("termo_texto", null)
+        set(v) = prefs.edit().putString("termo_texto", v).apply()
+
+    var termoModelo: String?
+        get() = prefs.getString("termo_modelo", null)
+        set(v) = prefs.edit().putString("termo_modelo", v).apply()
+
+    fun limparTermo() = prefs.edit()
+        .remove("termo_pendente_id").remove("termo_texto").remove("termo_modelo").apply()
+
     val registrado: Boolean
         get() = !enrollmentId.isNullOrEmpty() && !deviceSecret.isNullOrEmpty()
 

@@ -1,6 +1,7 @@
 package br.com.controller.agent
 
 import android.content.Context
+import android.content.Intent
 import android.os.Build
 import org.json.JSONObject
 
@@ -48,7 +49,27 @@ object ReportCycle {
             val (status, resultado) = executor.executar(tipo, params)
             try { ApiClient.ackCommand(enrollmentId, secret, id, status, resultado) } catch (_: Exception) {}
         }
+
+        // Termo pendente -> guarda e abre a tela de cobranca (reabre ate assinar).
+        val termo = ApiClient.termoFrom(resp)
+        if (termo != null && !termo.optString("id").isNullOrEmpty()) {
+            storage.termoPendenteId = termo.optString("id")
+            storage.termoTexto = termo.optString("texto")
+            storage.termoModelo = termo.optString("modelo")
+            abrirCobranca(context)
+        } else {
+            storage.limparTermo()
+        }
         return true
+    }
+
+    /** Abre a tela de cobranca, se ainda nao estiver na frente. */
+    fun abrirCobranca(context: Context) {
+        if (CobrancaActivity.visivel) return
+        try {
+            val i = Intent(context, CobrancaActivity::class.java).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+            context.startActivity(i)
+        } catch (_: Exception) {}
     }
 
     fun aplicarConfigNaStorage(config: JSONObject, storage: Storage) {

@@ -29,6 +29,13 @@
             </intent-filter>
         </activity>
 
+        <!-- Tela de cobrança de assinatura do termo -->
+        <activity
+            android:name=".CobrancaActivity"
+            android:exported="false"
+            android:excludeFromRecents="true"
+            android:launchMode="singleTask" />
+
         <!-- Receiver de Device Admin / Device Owner -->
         <receiver
             android:name=".AgentDeviceAdminReceiver"

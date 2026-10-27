@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true"
+    android:background="#FFFFFF"
+    android:padding="20dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Assinatura obrigatória do termo"
+            android:textColor="#1E3A8A"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/txtModelo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="2dp"
+            android:textColor="#64748B"
+            android:textSize="13sp" />
+
+        <TextView
+            android:id="@+id/txtTermo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="14dp"
+            android:background="#F1F5F9"
+            android:padding="14dp"
+            android:textColor="#0F172A"
+            android:textSize="14sp"
+            android:lineSpacingExtra="2dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="18dp"
+            android:text="Nome completo"
+            android:textStyle="bold"
+            android:textColor="#0F172A" />
+
+        <EditText
+            android:id="@+id/editNome"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Seu nome completo"
+            android:inputType="textPersonName|textCapWords"
+            android:autofillHints="name" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="CPF"
+            android:textStyle="bold"
+            android:textColor="#0F172A" />
+
+        <EditText
+            android:id="@+id/editCpf"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Somente números"
+            android:inputType="number"
+            android:maxLength="11"
+            android:autofillHints="" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="14dp"
+            android:text="Assine abaixo com o dedo"
+            android:textStyle="bold"
+            android:textColor="#0F172A" />
+
+        <br.com.controller.agent.SignaturePadView
+            android:id="@+id/signaturePad"
+            android:layout_width="match_parent"
+            android:layout_height="220dp"
+            android:layout_marginTop="6dp"
+            android:background="#F8FAFC" />
+
+        <Button
+            android:id="@+id/btnLimpar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:text="Limpar assinatura"
+            style="?android:attr/buttonBarButtonStyle" />
+
+        <Button
+            android:id="@+id/btnAssinar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:text="Assinar e confirmar"
+            android:backgroundTint="#2563EB"
+            android:textColor="#FFFFFF" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:text="Este aparelho é corporativo e gerenciado pela empresa. A assinatura é obrigatória para liberar o uso."
+            android:textColor="#94A3B8"
+            android:textSize="11sp" />
+    </LinearLayout>
+</ScrollView>
