@@ -92,6 +92,17 @@ object ApiClient {
     /** Termo pendente vindo no report/poll (ou null). */
     fun termoFrom(resp: JSONObject): JSONObject? = resp.optJSONObject("termo_pendente")
 
+    /** Busca o colaborador no cadastro (ADL) pelo CPF. */
+    fun buscarColaborador(enrollmentId: String, secret: String, cpf: String): JSONObject {
+        return post(
+            JSONObject()
+                .put("action", "buscarColaborador")
+                .put("enrollment_id", enrollmentId)
+                .put("device_secret", secret)
+                .put("cpf", cpf)
+        )
+    }
+
     /** Envia a assinatura do termo (feita no app, sem login). */
     fun assinarTermo(
         enrollmentId: String,
@@ -100,7 +111,8 @@ object ApiClient {
         nome: String,
         cpf: String,
         assinatura: String,
-        texto: String
+        texto: String,
+        reaproveitada: Boolean
     ): JSONObject {
         return post(
             JSONObject()
@@ -112,6 +124,17 @@ object ApiClient {
                 .put("cpf", cpf)
                 .put("assinatura", assinatura)
                 .put("texto", texto)
+                .put("reaproveitada", reaproveitada)
         )
+    }
+
+    /** Baixa uma imagem (ex.: assinatura armazenada) e devolve os bytes. */
+    fun baixarImagem(url: String): ByteArray? {
+        return try {
+            val req = Request.Builder().url(url).get().build()
+            client.newCall(req).execute().use { resp ->
+                if (!resp.isSuccessful) null else resp.body?.bytes()
+            }
+        } catch (_: Exception) { null }
     }
 }
