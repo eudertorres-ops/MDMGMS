@@ -8,3 +8,8 @@
 /captures
 .externalNativeBuild
 .cxx
+
+# .NET (agente de notebook)
+windows/bin/
+windows/obj/
+publish/
